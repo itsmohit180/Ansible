@@ -1,0 +1,20 @@
+- name: check if nginx is installed
+  command: which nginx
+  register: nginx_check
+  ignore_errors: yes
+  changed_when: no
+
+- name: updating cache and installing apache2
+  apt:
+    update_cache: yes
+    name: apache2
+    state: present
+  when: nginx_check.rc != 0
+  register: installed
+
+- name: starting apache2
+  systemd:
+    name: apache2
+    state: started
+    enabled: yes
+  when: installed.changed

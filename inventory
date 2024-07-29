@@ -1,0 +1,6 @@
+[prod]
+server1 ansible_host=3.110.158.18 ansible_user=ubuntu
+
+[dev]
+server2 ansible_host=65.0.107.56 ansible_user=ubuntu
+server3 ansible_host=3.6.41.146 ansible_user=ec2-user

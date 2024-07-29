@@ -1,0 +1,9 @@
+---
+
+- hosts: dev
+  become: true
+  vars:
+    - user: sasuke
+    - key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCE/+1z7bnjQVQW1ah3tY/sjEdTbACdBHg5UNhTpb44illM+4mrojRSoLwfnNz5BEI6+7T77sjb2AdV3BXyTVyEkqundn/YMYBvsUUtzTJs7QuHoyvXMENKwu/HO0DVVDbwB5gAXm3dBoZMxx3cqC+/Seiogi4gC8DcNAfBex2S7ny/xaYoq2MfmrIwJVe5x4HpSNOL9FsrAR1pBoTI0+L6GeWKMyd41PYqMMjlADQLWcLX649owdVjVIZdBu1pBp29FDql+SLg9EWu+j/PPX4ud9AgpcAUUJe5qt4lZOF6GEikwdamMs/AK4KLnCGEA1W2dOPjrMAiu1/doVIVKvdt KeyPair1_Mumbai
+  roles:
+    - user-management 

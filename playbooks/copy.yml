@@ -1,0 +1,9 @@
+- hosts: prod
+  become: yes
+  tasks:
+    - name: Transfer file from ServerA to ServerB
+      ansible.posix.synchronize:
+        src: /home/ubuntu/files/index.html
+        dest: /var/www/html/
+        private_key: /home/ubuntu/key.pem
+      delegate_to: server1

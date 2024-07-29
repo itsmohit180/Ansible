@@ -1,0 +1,41 @@
+- name: check if nginx is installed
+  tags: debian,redhat
+  command: which nginx
+  register: nginx_check
+  ignore_errors: yes
+  changed_when: no
+
+- name: updating cache and installing apache2
+  tags: debian
+  apt:
+    update_cache: yes
+    name: apache2
+    state: present
+  when: nginx_check.rc != 0
+  register: installed
+
+- name: starting apache2
+  tags: debian
+  systemd:
+    name: apache2
+    state: started
+    enabled: yes
+  when: installed.changed
+
+
+- name: updating cache and installing httpd
+  tags: redhat
+  dnf:
+    update_cache: yes
+    name: httpd
+    state: present
+  when: nginx_check.rc != 0
+  register: installed2
+
+- name: starting httpd
+  tags: redhat
+  systemd:
+    name: httpd
+    state: started
+    enabled: yes
+  when: installed2.changed
